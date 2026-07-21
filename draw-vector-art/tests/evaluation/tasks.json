@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "rubric": {
+    "promptMatch": 2,
+    "composition": 2,
+    "craft": 2,
+    "editability": 2,
+    "smallSizeLegibility": 2
+  },
+  "acceptance": {
+    "minimumAverage": 8,
+    "minimumPerTask": 6,
+    "preferredOverDirectSvg": 9,
+    "totalTasks": 12
+  },
+  "tasks": [
+    {
+      "id": "text-rocket",
+      "mode": "text-only",
+      "prompt": "Draw a cheerful coral rocket launching through a navy night sky, with one blue porthole and symmetrical fins.",
+      "checks": ["recognizable at 64 px", "mirrored fins", "semantic rocket parts"]
+    },
+    {
+      "id": "text-fox",
+      "mode": "text-only",
+      "prompt": "Draw a friendly orange fox head icon with large triangular ears, a cream muzzle, and balanced dark eyes.",
+      "checks": ["symmetrical face", "clear ear silhouette", "no fragmented paths"]
+    },
+    {
+      "id": "text-coffee",
+      "mode": "text-only",
+      "prompt": "Draw a warm cream coffee mug with a teal handle, three simple steam curls, and a small leaf emblem.",
+      "checks": ["handle reads clearly", "consistent steam strokes", "leaf remains editable"]
+    },
+    {
+      "id": "text-balloons",
+      "mode": "text-only",
+      "prompt": "Draw three celebratory balloons in coral, yellow, and blue with evenly spaced strings and a compact bow.",
+      "checks": ["balanced spacing", "strings remain visible", "clean overlap"]
+    },
+    {
+      "id": "text-whale",
+      "mode": "text-only",
+      "prompt": "Draw a playful blue whale icon with a rounded body, small tail, white belly, and two water droplets above it.",
+      "checks": ["whale silhouette", "tail joins body cleanly", "small details survive at 64 px"]
+    },
+    {
+      "id": "text-cabin",
+      "mode": "text-only",
+      "prompt": "Draw a tiny forest cabin at dusk with a red roof, glowing square window, one pine tree, and a crescent moon.",
+      "checks": ["simple layered scene", "window contrast", "clear depth order"]
+    },
+    {
+      "id": "reference-fox",
+      "mode": "text-plus-reference",
+      "prompt": "Adapt the supplied fox badge into cleaner, editable flat geometry while preserving the expression and orange-and-cream palette.",
+      "reference": "../../assets/evaluation-references/fox-badge.svg",
+      "intent": "adapt",
+      "checks": ["expression retained", "palette retained", "eyes and ears named separately"]
+    },
+    {
+      "id": "reference-mug",
+      "mode": "text-plus-reference",
+      "prompt": "Adapt the supplied mug into a polished app icon with fewer shapes and consistent rounded outlines.",
+      "reference": "../../assets/evaluation-references/leaf-mug.svg",
+      "intent": "adapt",
+      "checks": ["subject and leaf retained", "reduced complexity", "consistent stroke"]
+    },
+    {
+      "id": "reference-plant",
+      "mode": "text-plus-reference",
+      "prompt": "Rebuild the supplied plant as a balanced flat icon, keeping its three-leaf rhythm and terracotta pot.",
+      "reference": "../../assets/evaluation-references/plant-pot.svg",
+      "intent": "adapt",
+      "checks": ["three-leaf rhythm", "centered pot", "individual leaf geometry"]
+    },
+    {
+      "id": "reference-lighthouse",
+      "mode": "text-plus-reference",
+      "prompt": "Simplify the supplied lighthouse scene into a compact badge while preserving the striped tower, beam, sea, and sun.",
+      "reference": "../../assets/evaluation-references/lighthouse.svg",
+      "intent": "adapt",
+      "checks": ["tower remains focal", "beam layer order", "scene legible at 64 px"]
+    },
+    {
+      "id": "reference-weather",
+      "mode": "text-plus-reference",
+      "prompt": "Adapt the supplied sun-and-cloud mark into a cleaner weather icon with strong negative space.",
+      "reference": "../../assets/evaluation-references/sun-cloud.svg",
+      "intent": "adapt",
+      "checks": ["sun remains visible", "cloud contour is smooth", "no accidental tangencies"]
+    },
+    {
+      "id": "reference-fish",
+      "mode": "text-plus-reference",
+      "prompt": "Adapt the supplied fish into a simple aquatic icon while preserving its direction, fin placement, and coral accent.",
+      "reference": "../../assets/evaluation-references/coral-fish.svg",
+      "intent": "adapt",
+      "checks": ["direction retained", "fins remain separate", "clean body silhouette"]
+    }
+  ]
+}

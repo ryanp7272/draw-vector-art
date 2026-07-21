@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "brief": { "prompt": "Invalid placement cycle", "style": "flat-geometric", "referenceIntent": "adapt" },
+  "canvas": { "width": 256, "height": 256, "background": "none" },
+  "palette": { "ink": "#111827" },
+  "references": [],
+  "layers": [
+    {
+      "id": "first",
+      "type": "ellipse",
+      "frame": { "type": "relative", "to": "second", "width": 20, "height": 20 },
+      "paint": { "fill": "@ink", "stroke": "none", "strokeWidth": 0 }
+    },
+    {
+      "id": "second",
+      "type": "ellipse",
+      "frame": { "type": "relative", "to": "first", "width": 20, "height": 20 },
+      "paint": { "fill": "@ink", "stroke": "none", "strokeWidth": 0 }
+    }
+  ]
+}

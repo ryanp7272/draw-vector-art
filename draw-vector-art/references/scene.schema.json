@@ -1,0 +1,789 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "number",
+      "const": 1
+    },
+    "brief": {
+      "type": "object",
+      "properties": {
+        "prompt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "style": {
+          "default": "flat-geometric",
+          "type": "string",
+          "const": "flat-geometric"
+        },
+        "referenceIntent": {
+          "default": "adapt",
+          "type": "string",
+          "enum": [
+            "adapt",
+            "trace",
+            "inspire"
+          ]
+        }
+      },
+      "required": [
+        "prompt",
+        "style",
+        "referenceIntent"
+      ],
+      "additionalProperties": false
+    },
+    "canvas": {
+      "type": "object",
+      "properties": {
+        "width": {
+          "default": 256,
+          "type": "number",
+          "minimum": 16,
+          "maximum": 4096,
+          "$ref": "#/$defs/__schema0"
+        },
+        "height": {
+          "default": 256,
+          "type": "number",
+          "minimum": 16,
+          "maximum": 4096,
+          "$ref": "#/$defs/__schema0"
+        },
+        "background": {
+          "default": "none",
+          "$ref": "#/$defs/__schema1"
+        }
+      },
+      "required": [
+        "width",
+        "height",
+        "background"
+      ],
+      "additionalProperties": false
+    },
+    "palette": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/__schema2"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+      }
+    },
+    "references": {
+      "default": [],
+      "maxItems": 8,
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/__schema3"
+      }
+    },
+    "layers": {
+      "minItems": 1,
+      "maxItems": 64,
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/__schema4"
+      }
+    }
+  },
+  "required": [
+    "version",
+    "brief",
+    "canvas",
+    "palette",
+    "references",
+    "layers"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "__schema0": {
+      "type": "number"
+    },
+    "__schema1": {
+      "type": "string"
+    },
+    "__schema2": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "__schema3": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "intent": {
+          "default": "adapt",
+          "type": "string",
+          "enum": [
+            "adapt",
+            "trace",
+            "inspire"
+          ]
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 500
+        }
+      },
+      "required": [
+        "path",
+        "intent"
+      ],
+      "additionalProperties": false
+    },
+    "__schema4": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/__schema2"
+            },
+            "frame": {
+              "$ref": "#/$defs/__schema5"
+            },
+            "visible": {
+              "$ref": "#/$defs/__schema9"
+            },
+            "paint": {
+              "$ref": "#/$defs/__schema10"
+            },
+            "type": {
+              "type": "string",
+              "const": "ellipse"
+            }
+          },
+          "required": [
+            "id",
+            "frame",
+            "visible",
+            "paint",
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/__schema2"
+            },
+            "frame": {
+              "$ref": "#/$defs/__schema5"
+            },
+            "visible": {
+              "$ref": "#/$defs/__schema9"
+            },
+            "paint": {
+              "$ref": "#/$defs/__schema10"
+            },
+            "type": {
+              "type": "string",
+              "const": "rectangle"
+            }
+          },
+          "required": [
+            "id",
+            "frame",
+            "visible",
+            "paint",
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/__schema2"
+            },
+            "frame": {
+              "$ref": "#/$defs/__schema5"
+            },
+            "visible": {
+              "$ref": "#/$defs/__schema9"
+            },
+            "paint": {
+              "$ref": "#/$defs/__schema10"
+            },
+            "type": {
+              "type": "string",
+              "const": "rounded-rectangle"
+            },
+            "radius": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 50,
+              "$ref": "#/$defs/__schema0"
+            }
+          },
+          "required": [
+            "id",
+            "frame",
+            "visible",
+            "paint",
+            "type",
+            "radius"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/__schema2"
+            },
+            "frame": {
+              "$ref": "#/$defs/__schema5"
+            },
+            "visible": {
+              "$ref": "#/$defs/__schema9"
+            },
+            "paint": {
+              "$ref": "#/$defs/__schema10"
+            },
+            "type": {
+              "type": "string",
+              "const": "polygon"
+            },
+            "points": {
+              "minItems": 3,
+              "maxItems": 64,
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/__schema12"
+              }
+            }
+          },
+          "required": [
+            "id",
+            "frame",
+            "visible",
+            "paint",
+            "type",
+            "points"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/__schema2"
+            },
+            "frame": {
+              "$ref": "#/$defs/__schema5"
+            },
+            "visible": {
+              "$ref": "#/$defs/__schema9"
+            },
+            "paint": {
+              "$ref": "#/$defs/__schema10"
+            },
+            "type": {
+              "type": "string",
+              "const": "line"
+            },
+            "from": {
+              "$ref": "#/$defs/__schema12"
+            },
+            "to": {
+              "$ref": "#/$defs/__schema12"
+            }
+          },
+          "required": [
+            "id",
+            "frame",
+            "visible",
+            "paint",
+            "type",
+            "from",
+            "to"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/__schema2"
+            },
+            "frame": {
+              "$ref": "#/$defs/__schema5"
+            },
+            "visible": {
+              "$ref": "#/$defs/__schema9"
+            },
+            "paint": {
+              "$ref": "#/$defs/__schema10"
+            },
+            "type": {
+              "type": "string",
+              "const": "bezier-path"
+            },
+            "nodes": {
+              "minItems": 2,
+              "maxItems": 64,
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/__schema14"
+              }
+            },
+            "closed": {
+              "default": true,
+              "type": "boolean"
+            },
+            "fillRule": {
+              "default": "nonzero",
+              "type": "string",
+              "enum": [
+                "nonzero",
+                "evenodd"
+              ]
+            }
+          },
+          "required": [
+            "id",
+            "frame",
+            "visible",
+            "paint",
+            "type",
+            "nodes",
+            "closed",
+            "fillRule"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/__schema2"
+            },
+            "frame": {
+              "$ref": "#/$defs/__schema5"
+            },
+            "visible": {
+              "$ref": "#/$defs/__schema9"
+            },
+            "type": {
+              "type": "string",
+              "const": "clone"
+            },
+            "source": {
+              "$ref": "#/$defs/__schema2"
+            },
+            "paint": {
+              "$ref": "#/$defs/__schema10"
+            }
+          },
+          "required": [
+            "id",
+            "frame",
+            "visible",
+            "type",
+            "source"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/__schema2"
+            },
+            "frame": {
+              "$ref": "#/$defs/__schema5"
+            },
+            "visible": {
+              "$ref": "#/$defs/__schema9"
+            },
+            "type": {
+              "type": "string",
+              "const": "group"
+            },
+            "clipTo": {
+              "$ref": "#/$defs/__schema2"
+            },
+            "layout": {
+              "default": {
+                "type": "free"
+              },
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "free"
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "row",
+                        "column"
+                      ]
+                    },
+                    "gap": {
+                      "default": 0,
+                      "type": "number",
+                      "maximum": 100,
+                      "$ref": "#/$defs/__schema11"
+                    },
+                    "padding": {
+                      "default": 0,
+                      "type": "number",
+                      "maximum": 49,
+                      "$ref": "#/$defs/__schema11"
+                    },
+                    "align": {
+                      "default": "center",
+                      "type": "string",
+                      "enum": [
+                        "start",
+                        "center",
+                        "end"
+                      ]
+                    },
+                    "justify": {
+                      "default": "center",
+                      "type": "string",
+                      "enum": [
+                        "start",
+                        "center",
+                        "end"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "gap",
+                    "padding",
+                    "align",
+                    "justify"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            },
+            "children": {
+              "minItems": 1,
+              "maxItems": 64,
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/__schema4"
+              }
+            }
+          },
+          "required": [
+            "id",
+            "frame",
+            "visible",
+            "type",
+            "layout",
+            "children"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "__schema5": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "absolute"
+            },
+            "x": {
+              "$ref": "#/$defs/__schema0"
+            },
+            "y": {
+              "$ref": "#/$defs/__schema0"
+            },
+            "width": {
+              "$ref": "#/$defs/__schema6"
+            },
+            "height": {
+              "$ref": "#/$defs/__schema6"
+            }
+          },
+          "required": [
+            "type",
+            "x",
+            "y",
+            "width",
+            "height"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "relative"
+            },
+            "to": {
+              "$ref": "#/$defs/__schema2"
+            },
+            "selfAnchor": {
+              "default": "center",
+              "$ref": "#/$defs/__schema7"
+            },
+            "targetAnchor": {
+              "default": "center",
+              "$ref": "#/$defs/__schema7"
+            },
+            "offset": {
+              "default": {
+                "x": 0,
+                "y": 0
+              },
+              "$ref": "#/$defs/__schema8"
+            },
+            "width": {
+              "$ref": "#/$defs/__schema6"
+            },
+            "height": {
+              "$ref": "#/$defs/__schema6"
+            }
+          },
+          "required": [
+            "type",
+            "to",
+            "selfAnchor",
+            "targetAnchor",
+            "offset",
+            "width",
+            "height"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "mirror"
+            },
+            "of": {
+              "$ref": "#/$defs/__schema2"
+            },
+            "axis": {
+              "type": "string",
+              "enum": [
+                "x",
+                "y"
+              ]
+            },
+            "at": {
+              "$ref": "#/$defs/__schema0"
+            },
+            "offset": {
+              "default": {
+                "x": 0,
+                "y": 0
+              },
+              "$ref": "#/$defs/__schema8"
+            }
+          },
+          "required": [
+            "type",
+            "of",
+            "axis",
+            "at",
+            "offset"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "__schema6": {
+      "exclusiveMinimum": 0,
+      "$ref": "#/$defs/__schema0"
+    },
+    "__schema7": {
+      "type": "string",
+      "enum": [
+        "top-left",
+        "top",
+        "top-right",
+        "left",
+        "center",
+        "right",
+        "bottom-left",
+        "bottom",
+        "bottom-right"
+      ]
+    },
+    "__schema8": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "default": 0,
+          "$ref": "#/$defs/__schema0"
+        },
+        "y": {
+          "default": 0,
+          "$ref": "#/$defs/__schema0"
+        }
+      },
+      "required": [
+        "x",
+        "y"
+      ],
+      "additionalProperties": false
+    },
+    "__schema9": {
+      "default": true,
+      "type": "boolean"
+    },
+    "__schema10": {
+      "type": "object",
+      "properties": {
+        "fill": {
+          "default": "none",
+          "$ref": "#/$defs/__schema1"
+        },
+        "stroke": {
+          "default": "none",
+          "$ref": "#/$defs/__schema1"
+        },
+        "strokeWidth": {
+          "default": 0,
+          "type": "number",
+          "maximum": 32,
+          "$ref": "#/$defs/__schema11"
+        },
+        "opacity": {
+          "default": 1,
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "$ref": "#/$defs/__schema0"
+        },
+        "lineCap": {
+          "default": "round",
+          "type": "string",
+          "enum": [
+            "butt",
+            "round",
+            "square"
+          ]
+        },
+        "lineJoin": {
+          "default": "round",
+          "type": "string",
+          "enum": [
+            "miter",
+            "round",
+            "bevel"
+          ]
+        }
+      },
+      "required": [
+        "fill",
+        "stroke",
+        "strokeWidth",
+        "opacity",
+        "lineCap",
+        "lineJoin"
+      ],
+      "additionalProperties": false
+    },
+    "__schema11": {
+      "minimum": 0,
+      "$ref": "#/$defs/__schema0"
+    },
+    "__schema12": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "$ref": "#/$defs/__schema13"
+        },
+        "y": {
+          "$ref": "#/$defs/__schema13"
+        }
+      },
+      "required": [
+        "x",
+        "y"
+      ],
+      "additionalProperties": false
+    },
+    "__schema13": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "$ref": "#/$defs/__schema0"
+    },
+    "__schema14": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "$ref": "#/$defs/__schema13"
+        },
+        "y": {
+          "$ref": "#/$defs/__schema13"
+        },
+        "in": {
+          "$ref": "#/$defs/__schema15"
+        },
+        "out": {
+          "$ref": "#/$defs/__schema15"
+        },
+        "smooth": {
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "x",
+        "y",
+        "smooth"
+      ],
+      "additionalProperties": false
+    },
+    "__schema15": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "$ref": "#/$defs/__schema16"
+        },
+        "y": {
+          "$ref": "#/$defs/__schema16"
+        }
+      },
+      "required": [
+        "x",
+        "y"
+      ],
+      "additionalProperties": false
+    },
+    "__schema16": {
+      "type": "number",
+      "minimum": -100,
+      "maximum": 100,
+      "$ref": "#/$defs/__schema0"
+    }
+  }
+}

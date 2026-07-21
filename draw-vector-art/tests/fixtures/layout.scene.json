@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "brief": { "prompt": "Three balanced geometric leaves", "style": "flat-geometric", "referenceIntent": "adapt" },
+  "canvas": { "width": 256, "height": 256, "background": "@background" },
+  "palette": {
+    "background": "#F8FAFC",
+    "leaf": "#22C55E",
+    "outline": "#14532D"
+  },
+  "references": [],
+  "layers": [
+    {
+      "id": "leaf-row",
+      "type": "group",
+      "frame": { "type": "absolute", "x": 28, "y": 76, "width": 200, "height": 104 },
+      "layout": { "type": "row", "gap": 6, "padding": 6, "align": "center", "justify": "center" },
+      "children": [
+        {
+          "id": "leaf-left",
+          "type": "bezier-path",
+          "frame": { "type": "absolute", "x": 0, "y": 0, "width": 25, "height": 72 },
+          "nodes": [
+            { "x": 0, "y": 50, "out": { "x": 24, "y": -46 } },
+            { "x": 100, "y": 50, "in": { "x": -24, "y": -46 }, "out": { "x": -24, "y": 46 } },
+            { "x": 0, "y": 50, "in": { "x": 24, "y": 46 } }
+          ],
+          "closed": true,
+          "paint": { "fill": "@leaf", "stroke": "@outline", "strokeWidth": 2 }
+        },
+        {
+          "id": "leaf-center",
+          "type": "clone",
+          "source": "leaf-left",
+          "frame": { "type": "absolute", "x": 0, "y": 0, "width": 32, "height": 88 }
+        },
+        {
+          "id": "leaf-right",
+          "type": "clone",
+          "source": "leaf-left",
+          "frame": { "type": "absolute", "x": 0, "y": 0, "width": 25, "height": 72 }
+        }
+      ]
+    }
+  ]
+}

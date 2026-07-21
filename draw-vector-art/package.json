@@ -1,0 +1,23 @@
+{
+  "name": "draw-vector-art-skill",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Deterministic scene-to-SVG engine for the draw-vector-art Codex skill",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "check": "npm run build && npm test",
+    "draw": "npm run build --silent && node dist/scripts/cli.js",
+    "schema": "npm run build --silent && node dist/scripts/cli.js schema --out references/scene.schema.json",
+    "test": "npm run build --silent && node --test dist/tests/*.test.js"
+  },
+  "dependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "sharp": "^0.34.3",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.8.0"
+  }
+}

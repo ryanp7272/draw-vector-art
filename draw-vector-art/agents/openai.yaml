@@ -1,0 +1,4 @@
+interface:
+  display_name: "Draw Vector Art"
+  short_description: "Create clean, editable vector artwork"
+  default_prompt: "Use $draw-vector-art to create a polished, editable SVG from my description or reference image."

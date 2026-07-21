@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "brief": {
+    "prompt": "A cheerful coral rocket launching through a navy night sky",
+    "style": "flat-geometric",
+    "referenceIntent": "adapt"
+  },
+  "canvas": {
+    "width": 256,
+    "height": 256,
+    "background": "@sky"
+  },
+  "palette": {
+    "sky": "#111827",
+    "body": "#F97362",
+    "highlight": "#FDBA74",
+    "window": "#7DD3FC",
+    "outline": "#172554",
+    "flame": "#FACC15",
+    "white": "#F8FAFC",
+    "ground": "#334155"
+  },
+  "references": [],
+  "layers": [
+    {
+      "id": "stars",
+      "type": "group",
+      "frame": { "type": "absolute", "x": 20, "y": 24, "width": 60, "height": 24 },
+      "layout": { "type": "row", "gap": 8, "padding": 5, "align": "center", "justify": "center" },
+      "children": [
+        {
+          "id": "star-one",
+          "type": "ellipse",
+          "frame": { "type": "absolute", "x": 0, "y": 0, "width": 18, "height": 38 },
+          "paint": { "fill": "@white", "stroke": "none", "strokeWidth": 0 }
+        },
+        {
+          "id": "star-two",
+          "type": "ellipse",
+          "frame": { "type": "absolute", "x": 0, "y": 0, "width": 12, "height": 26 },
+          "paint": { "fill": "@highlight", "stroke": "none", "strokeWidth": 0 }
+        },
+        {
+          "id": "star-three",
+          "type": "ellipse",
+          "frame": { "type": "absolute", "x": 0, "y": 0, "width": 15, "height": 32 },
+          "paint": { "fill": "@white", "stroke": "none", "strokeWidth": 0 }
+        }
+      ]
+    },
+    {
+      "id": "launch-pad",
+      "type": "rectangle",
+      "frame": { "type": "absolute", "x": 36, "y": 222, "width": 184, "height": 12 },
+      "paint": { "fill": "@ground", "stroke": "none", "strokeWidth": 0 }
+    },
+    {
+      "id": "flame-outer",
+      "type": "polygon",
+      "frame": { "type": "absolute", "x": 102, "y": 181, "width": 52, "height": 48 },
+      "points": [
+        { "x": 0, "y": 0 },
+        { "x": 100, "y": 0 },
+        { "x": 72, "y": 100 },
+        { "x": 50, "y": 72 },
+        { "x": 28, "y": 100 }
+      ],
+      "paint": { "fill": "@body", "stroke": "@outline", "strokeWidth": 3 }
+    },
+    {
+      "id": "flame-inner",
+      "type": "polygon",
+      "frame": { "type": "relative", "to": "flame-outer", "selfAnchor": "top", "targetAnchor": "top", "offset": { "x": 0, "y": 7 }, "width": 24, "height": 34 },
+      "points": [
+        { "x": 0, "y": 0 },
+        { "x": 100, "y": 0 },
+        { "x": 50, "y": 100 }
+      ],
+      "paint": { "fill": "@flame", "stroke": "none", "strokeWidth": 0 }
+    },
+    {
+      "id": "left-fin",
+      "type": "bezier-path",
+      "frame": { "type": "absolute", "x": 52, "y": 126, "width": 60, "height": 76 },
+      "nodes": [
+        { "x": 100, "y": 0 },
+        { "x": 42, "y": 30, "out": { "x": -20, "y": 18 } },
+        { "x": 0, "y": 100, "in": { "x": 5, "y": -24 } },
+        { "x": 100, "y": 76 }
+      ],
+      "closed": true,
+      "paint": { "fill": "@body", "stroke": "@outline", "strokeWidth": 3 }
+    },
+    {
+      "id": "right-fin",
+      "type": "clone",
+      "source": "left-fin",
+      "frame": { "type": "mirror", "of": "left-fin", "axis": "x", "at": 128 }
+    },
+    {
+      "id": "rocket-body",
+      "type": "bezier-path",
+      "frame": { "type": "absolute", "x": 68, "y": 20, "width": 120, "height": 172 },
+      "nodes": [
+        { "x": 50, "y": 0, "in": { "x": -18, "y": 0 }, "out": { "x": 18, "y": 0 }, "smooth": true },
+        { "x": 86, "y": 56, "in": { "x": 0, "y": -24 }, "out": { "x": 0, "y": 18 }, "smooth": true },
+        { "x": 67, "y": 100, "in": { "x": 14, "y": -4 } },
+        { "x": 33, "y": 100, "out": { "x": -14, "y": -4 } },
+        { "x": 14, "y": 56, "in": { "x": 0, "y": 18 }, "out": { "x": 0, "y": -24 }, "smooth": true }
+      ],
+      "closed": true,
+      "paint": { "fill": "@body", "stroke": "@outline", "strokeWidth": 4 }
+    },
+    {
+      "id": "body-highlight",
+      "type": "group",
+      "frame": { "type": "absolute", "x": 68, "y": 20, "width": 120, "height": 172 },
+      "clipTo": "rocket-body",
+      "children": [
+        {
+          "id": "highlight-shape",
+          "type": "ellipse",
+          "frame": { "type": "absolute", "x": 57, "y": 7, "width": 32, "height": 78 },
+          "paint": { "fill": "@highlight", "stroke": "none", "strokeWidth": 0, "opacity": 0.7 }
+        }
+      ]
+    },
+    {
+      "id": "porthole",
+      "type": "ellipse",
+      "frame": { "type": "relative", "to": "rocket-body", "selfAnchor": "center", "targetAnchor": "top", "offset": { "x": 0, "y": 58 }, "width": 42, "height": 42 },
+      "paint": { "fill": "@window", "stroke": "@outline", "strokeWidth": 4 }
+    },
+    {
+      "id": "body-band",
+      "type": "rounded-rectangle",
+      "frame": { "type": "relative", "to": "rocket-body", "selfAnchor": "center", "targetAnchor": "center", "offset": { "x": 0, "y": 34 }, "width": 68, "height": 16 },
+      "radius": 36,
+      "paint": { "fill": "@white", "stroke": "@outline", "strokeWidth": 3 }
+    },
+    {
+      "id": "body-seam",
+      "type": "line",
+      "frame": { "type": "relative", "to": "body-band", "selfAnchor": "center", "targetAnchor": "center", "offset": { "x": 0, "y": 0 }, "width": 46, "height": 2 },
+      "from": { "x": 0, "y": 50 },
+      "to": { "x": 100, "y": 50 },
+      "paint": { "fill": "none", "stroke": "@outline", "strokeWidth": 2 }
+    }
+  ]
+}
