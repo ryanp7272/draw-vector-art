@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "runtime",
+    "declaration": false,
+    "sourceMap": false,
+    "newLine": "lf"
+  },
+  "include": ["scripts/**/*.ts"],
+  "exclude": ["tests/**/*.ts"]
+}

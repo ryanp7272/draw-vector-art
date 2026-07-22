@@ -2,7 +2,7 @@
   "version": 1,
   "run": "pilot-one-shot-v1",
   "description": "Illustrative same-model pilot. Direct SVG inputs were authored once without render feedback; scene inputs used validation and visual inspection. This is a harness smoke test, not an independent model evaluation.",
-  "generatedAt": "2026-07-22T16:37:10.343Z",
+  "generatedAt": "2026-07-22T20:38:36.315Z",
   "completeEvaluation": false,
   "evaluatedTasks": 3,
   "totalTasks": 12,
@@ -13,6 +13,7 @@
   "cases": [
     {
       "taskId": "text-rocket",
+      "mode": "text-only",
       "prompt": "Draw a cheerful coral rocket launching through a navy night sky, with one blue porthole and symmetrical fins.",
       "checks": [
         "recognizable at 64 px",
@@ -36,12 +37,14 @@
       "artifacts": {
         "labeled": "text-rocket/labeled.png",
         "blind": "text-rocket/blind.png",
+        "blind64": "text-rocket/blind-64.png",
         "blindSvgA": "text-rocket/A.svg",
         "blindSvgB": "text-rocket/B.svg"
       }
     },
     {
       "taskId": "text-fox",
+      "mode": "text-only",
       "prompt": "Draw a friendly orange fox head icon with large triangular ears, a cream muzzle, and balanced dark eyes.",
       "checks": [
         "symmetrical face",
@@ -65,12 +68,14 @@
       "artifacts": {
         "labeled": "text-fox/labeled.png",
         "blind": "text-fox/blind.png",
+        "blind64": "text-fox/blind-64.png",
         "blindSvgA": "text-fox/A.svg",
         "blindSvgB": "text-fox/B.svg"
       }
     },
     {
       "taskId": "text-coffee",
+      "mode": "text-only",
       "prompt": "Draw a warm cream coffee mug with a teal handle, three simple steam curls, and a small leaf emblem.",
       "checks": [
         "handle reads clearly",
@@ -94,6 +99,7 @@
       "artifacts": {
         "labeled": "text-coffee/labeled.png",
         "blind": "text-coffee/blind.png",
+        "blind64": "text-coffee/blind-64.png",
         "blindSvgA": "text-coffee/A.svg",
         "blindSvgB": "text-coffee/B.svg"
       }

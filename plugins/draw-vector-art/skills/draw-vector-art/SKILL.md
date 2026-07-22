@@ -9,14 +9,16 @@ Create vector artwork through the bundled semantic scene engine. Author constrai
 
 ## Prepare the engine
 
-Locate this skill directory and run commands from any working directory with:
+The engine requires Node.js 20.3 or newer. Locate this skill directory and run the bundled launcher from any working directory:
 
 ```bash
-npm --prefix <skill-directory> install
-npm --prefix <skill-directory> run draw -- <command>
+node <skill-directory>/scripts/run-engine.mjs doctor
+node <skill-directory>/scripts/run-engine.mjs <command>
 ```
 
-Run `install` only when `node_modules` is absent. Read [references/scene-format.md](references/scene-format.md) before authoring or changing a scene. Consult [references/scene.schema.json](references/scene.schema.json) only for exact schema details.
+Do not install packages into the installed plugin directory. The launcher uses repository dependencies during development; otherwise, the first engine command runs `npm ci --omit=dev` once in a versioned writable temporary cache. Run `node <skill-directory>/scripts/run-engine.mjs prepare` to perform that bootstrap explicitly. Set `DRAW_VECTOR_ART_CACHE_DIR` only when the default temporary directory is unsuitable.
+
+Read [references/scene-format.md](references/scene-format.md) before authoring or changing a scene. Consult [references/scene.schema.json](references/scene.schema.json) only for exact schema details.
 
 ## Follow the drawing loop
 
@@ -26,19 +28,19 @@ Run `install` only when `node_modules` is absent. Read [references/scene-format.
 4. Validate after each meaningful stage:
 
    ```bash
-   npm --prefix <skill-directory> run draw -- validate <scene.json>
+   node <skill-directory>/scripts/run-engine.mjs validate <scene.json>
    ```
 
 5. Render after validation succeeds:
 
    ```bash
-   npm --prefix <skill-directory> run draw -- render <scene.json> --out <output-directory>
+   node <skill-directory>/scripts/run-engine.mjs render <scene.json> --out <output-directory>
    ```
 
 6. Inspect `preview-64.png`, `preview-1024.png`, and `debug.png`. When using a reference, also run and inspect:
 
    ```bash
-   npm --prefix <skill-directory> run draw -- compare <scene.json> --reference <image> --out <output-directory>
+   node <skill-directory>/scripts/run-engine.mjs compare <scene.json> --reference <image> --out <output-directory>
    ```
 
 7. Revise only the named objects responsible for visible problems. Repeat validation and rendering for no more than four focused refinement passes unless the user asks for further exploration.
@@ -57,7 +59,7 @@ Check every render for:
 
 Treat `report.json` as structural evidence, not an aesthetic score. Always inspect the actual images. Fix all errors; investigate warnings rather than suppressing them mechanically.
 
-When evaluating a change to this skill or engine, read [references/benchmark.md](references/benchmark.md) and use the bundled blinded comparison runner. Do not use the benchmark protocol for ordinary drawing requests.
+When evaluating a change to this skill or engine, read [references/benchmark.md](references/benchmark.md) and use `node <skill-directory>/scripts/run-engine.mjs benchmark <run.json> --out <output-directory>`. Do not use the benchmark protocol for ordinary drawing requests.
 
 ## Preserve reliability
 

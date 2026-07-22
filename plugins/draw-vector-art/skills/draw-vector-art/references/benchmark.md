@@ -25,7 +25,7 @@ Create a run manifest with one or more cases:
 }
 ```
 
-Resolve input paths relative to the run manifest. Use task IDs from `tests/evaluation/tasks.json`. Do not modify a direct-SVG result after rendering it. Record generation conditions in the run description.
+Resolve input paths relative to the run manifest. Use each task ID at most once and choose IDs from `tests/evaluation/tasks.json`. A run is marked complete only when its cases are exactly the 12 expected tasks. Do not modify a direct-SVG result after rendering it. Record generation conditions in the run description.
 
 ## Run
 
@@ -33,11 +33,13 @@ Resolve input paths relative to the run manifest. Use task IDs from `tests/evalu
 npm run benchmark -- <run.json> --out <output-directory>
 ```
 
-The runner rejects remote, scripted, data-URL, or `foreignObject` content; validates engine scenes; renders both methods at 64, 256, and 1024 px; and creates:
+The runner rejects duplicate or unknown task IDs and remote, scripted, data-URL, or `foreignObject` content; validates engine scenes; renders both methods at 64, 256, and 1024 px; and creates:
 
 - `contact-sheet.png` for labeled review.
-- `<task>/blind.png` with deterministic A/B ordering.
+- `<task>/blind.png` with deterministic, balanced A/B ordering. Reference tasks show `Reference / A / B` and identify the requested adaptation intent.
+- `<task>/blind-64.png`, assembled from the native 64 px renders rather than a resized large preview, for small-size legibility scoring.
 - `<task>/A.svg` and `<task>/B.svg` for blind editability review.
+- `<task>/reference.png` and `<task>/reference-64.png` for reference tasks.
 - `scorecard.csv` using the five-part 10-point rubric.
 - `blind-key.json`, which reviewers should not open until scoring is complete.
 - `report.json` with structural metrics and validation results.

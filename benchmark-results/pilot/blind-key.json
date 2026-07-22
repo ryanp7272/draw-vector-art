@@ -8,7 +8,7 @@
     "B": "scene-engine"
   },
   "text-coffee": {
-    "A": "scene-engine",
-    "B": "direct-svg"
+    "A": "direct-svg",
+    "B": "scene-engine"
   }
 }

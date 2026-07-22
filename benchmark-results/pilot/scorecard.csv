@@ -1,4 +1,4 @@
-task_id,prompt,a_prompt_match_0_2,a_composition_0_2,a_craft_0_2,a_editability_0_2,a_small_size_legibility_0_2,b_prompt_match_0_2,b_composition_0_2,b_craft_0_2,b_editability_0_2,b_small_size_legibility_0_2,preferred_a_or_b,notes
-"text-rocket","Draw a cheerful coral rocket launching through a navy night sky, with one blue porthole and symmetrical fins.",,,,,,,,,,,,
-"text-fox","Draw a friendly orange fox head icon with large triangular ears, a cream muzzle, and balanced dark eyes.",,,,,,,,,,,,
-"text-coffee","Draw a warm cream coffee mug with a teal handle, three simple steam curls, and a small leaf emblem.",,,,,,,,,,,,
+task_id,mode,reference_intent,prompt,a_prompt_match_0_2,a_composition_0_2,a_craft_0_2,a_editability_0_2,a_small_size_legibility_0_2,b_prompt_match_0_2,b_composition_0_2,b_craft_0_2,b_editability_0_2,b_small_size_legibility_0_2,preferred_a_or_b,notes
+"text-rocket","text-only","","Draw a cheerful coral rocket launching through a navy night sky, with one blue porthole and symmetrical fins.",,,,,,,,,,,,
+"text-fox","text-only","","Draw a friendly orange fox head icon with large triangular ears, a cream muzzle, and balanced dark eyes.",,,,,,,,,,,,
+"text-coffee","text-only","","Draw a warm cream coffee mug with a teal handle, three simple steam curls, and a small leaf emblem.",,,,,,,,,,,,

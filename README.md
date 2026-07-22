@@ -2,16 +2,27 @@
 
 `draw-vector-art` is a Codex plugin and deterministic TypeScript drawing engine for clean, editable SVG icons and simple illustrations. Codex authors a constrained semantic scene, validates it, renders previews, inspects the result, and revises named parts instead of guessing raw SVG coordinates in one pass.
 
+[![CI](https://github.com/ryanp7272/draw-vector-art/actions/workflows/ci.yml/badge.svg)](https://github.com/ryanp7272/draw-vector-art/actions/workflows/ci.yml)
+
 ![Three-task direct SVG versus scene-engine pilot](benchmark-results/pilot/contact-sheet.png)
 
 ## Use it in Codex
 
-Install the public marketplace directly from GitHub:
+Node.js 20.3 or newer and npm are required. Install the latest public marketplace directly from GitHub:
 
 ```bash
 codex plugin marketplace add ryanp7272/draw-vector-art --ref main
 codex plugin add draw-vector-art@draw-vector-art
 ```
+
+For a reproducible install, pin the marketplace to a release instead of the moving `main` branch:
+
+```bash
+codex plugin marketplace add ryanp7272/draw-vector-art --ref v0.2.2
+codex plugin add draw-vector-art@draw-vector-art
+```
+
+Choose either `main` or a release tag for a marketplace installation, not both under the same marketplace name. `main` receives the newest changes; a version tag stays fixed.
 
 Start a new Codex task after installation, then ask naturally or invoke the skill explicitly:
 
@@ -19,17 +30,29 @@ Start a new Codex task after installation, then ask naturally or invoke the skil
 Use $draw-vector-art to make a golf ball on a tee.
 ```
 
-Codex delivers the editable scene JSON, clean SVG, 1024 px preview, and validation report. Reference adaptations also include a comparison sheet.
+Codex delivers the editable scene JSON, clean SVG, 64/256/1024 px previews, debug overlay, and validation report. Reference adaptations also include a comparison sheet.
+
+### First-run bootstrap
+
+The plugin ships compiled engine code, so using it does not require TypeScript or a build step. On the first engine run for a release, its small launcher downloads the pinned production dependencies with `npm ci` into a versioned, platform-specific directory under the operating system's writable temporary directory. Later runs reuse that cache and do not modify the installed plugin.
+
+Codex normally handles this automatically. To check prerequisites or populate the cache ahead of time from a repository checkout, run:
+
+```bash
+node plugins/draw-vector-art/skills/draw-vector-art/scripts/run-engine.mjs doctor
+node plugins/draw-vector-art/skills/draw-vector-art/scripts/run-engine.mjs prepare
+```
+
+Set `DRAW_VECTOR_ART_CACHE_DIR` to another writable directory if the default temporary directory is unavailable or routinely cleared. `prepare` requires network access the first time it populates a cache; rendering can then reuse that cached release.
 
 ## Engine commands
 
 Run from the repository root:
 
 ```bash
-npm --prefix plugins/draw-vector-art/skills/draw-vector-art install
-npm --prefix plugins/draw-vector-art/skills/draw-vector-art run draw -- schema
-npm --prefix plugins/draw-vector-art/skills/draw-vector-art run draw -- validate /path/to/scene.json
-npm --prefix plugins/draw-vector-art/skills/draw-vector-art run draw -- render /path/to/scene.json --out /path/to/output
+node plugins/draw-vector-art/skills/draw-vector-art/scripts/run-engine.mjs schema
+node plugins/draw-vector-art/skills/draw-vector-art/scripts/run-engine.mjs validate /path/to/scene.json
+node plugins/draw-vector-art/skills/draw-vector-art/scripts/run-engine.mjs render /path/to/scene.json --out /path/to/output
 ```
 
 ## Reproduce the comparison pilot
@@ -37,18 +60,27 @@ npm --prefix plugins/draw-vector-art/skills/draw-vector-art run draw -- render /
 The repository includes a 12-task evaluation manifest and a three-task smoke-test run. The pilot compares a one-shot direct SVG against a validated scene-engine result and generates deterministic blind A/B sheets plus a blank human scorecard:
 
 ```bash
-npm --prefix plugins/draw-vector-art/skills/draw-vector-art run benchmark -- \
-  tests/evaluation/pilot/run.json \
-  --out ../../../../benchmark-results/pilot
+node plugins/draw-vector-art/skills/draw-vector-art/scripts/run-engine.mjs benchmark \
+  plugins/draw-vector-art/skills/draw-vector-art/tests/evaluation/pilot/run.json \
+  --out benchmark-results/pilot
 ```
 
 The included pilot is illustrative, not an independent model evaluation. A defensible product claim requires independently generated outputs for all 12 tasks and blinded human scoring. The runner deliberately reports structural metrics without pretending they measure visual quality.
 
 ## Verify
 
+Install development dependencies and run the complete local check:
+
 ```bash
+npm --prefix plugins/draw-vector-art/skills/draw-vector-art ci
 npm --prefix plugins/draw-vector-art/skills/draw-vector-art run check
 ```
+
+CI runs the same check on Node 20 and 22 under Ubuntu, macOS, and Windows, rejects stale committed runtime files, and exercises `doctor`, `prepare`, `schema`, and `render` from a clean `git archive` with no development dependencies present. The packaged smoke test also covers paths containing spaces and renders from the prepared cache with npm unavailable.
+
+## Releases
+
+Release tags are the stable distribution points. Each release includes the semantic skill instructions, TypeScript sources, generated JSON Schema, and committed JavaScript runtime. A release is ready only after the cross-platform checks and clean packaged-plugin bootstrap pass. See the [changelog](CHANGELOG.md) for user-visible changes and [release checklist](docs/RELEASING.md) for the maintainer workflow.
 
 ## License
 

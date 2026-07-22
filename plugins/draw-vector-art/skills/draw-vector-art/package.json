@@ -1,16 +1,23 @@
 {
   "name": "draw-vector-art-skill",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "private": true,
   "license": "MIT",
   "type": "module",
   "description": "Deterministic scene-to-SVG engine for the draw-vector-art Codex skill",
+  "engines": {
+    "node": ">=20.3.0"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "check": "npm run build && npm test",
-    "benchmark": "npm run build --silent && node dist/scripts/benchmark-cli.js",
-    "draw": "npm run build --silent && node dist/scripts/cli.js",
-    "schema": "npm run build --silent && node dist/scripts/cli.js schema --out references/scene.schema.json",
+    "build:runtime": "tsc -p tsconfig.runtime.json",
+    "check": "npm run build:runtime && npm run build && npm test",
+    "benchmark": "node scripts/run-engine.mjs benchmark",
+    "doctor": "node scripts/run-engine.mjs doctor",
+    "draw": "node scripts/run-engine.mjs",
+    "draw:dev": "npm run build --silent && node dist/scripts/cli.js",
+    "runtime:prepare": "node scripts/run-engine.mjs prepare",
+    "schema": "node scripts/run-engine.mjs schema --out references/scene.schema.json",
     "test": "npm run build --silent && node --test dist/tests/*.test.js"
   },
   "dependencies": {

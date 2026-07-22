@@ -2,6 +2,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
+import { runBenchmark } from "./benchmark.js";
 import { validateScene, type ValidationIssue } from "./diagnostics.js";
 import { compareScene, renderScene } from "./render.js";
 import { sceneJsonSchema } from "./schema.js";
@@ -42,6 +43,7 @@ function usage(): string {
     "  validate <scene.json>",
     "  render <scene.json> --out <directory>",
     "  compare <scene.json> --reference <image> --out <directory>",
+    "  benchmark <run.json> --out <directory>",
   ].join("\n");
 }
 
@@ -70,6 +72,29 @@ async function main(): Promise<void> {
     } else {
       process.stdout.write(schema);
     }
+    return;
+  }
+
+  if (parsed.command === "benchmark") {
+    const runPath = parsed.positional[0];
+    if (!runPath) throw new Error("benchmark requires a run JSON path");
+    const outputDirectory = parsed.options.get("out");
+    if (!outputDirectory) throw new Error("benchmark requires --out <directory>");
+    const report = await runBenchmark(runPath, outputDirectory);
+    process.stdout.write(
+      `${JSON.stringify(
+        {
+          ok: true,
+          run: report.run,
+          evaluatedTasks: report.evaluatedTasks,
+          totalTasks: report.totalTasks,
+          completeEvaluation: report.completeEvaluation,
+          artifacts: report.artifacts,
+        },
+        null,
+        2,
+      )}\n`,
+    );
     return;
   }
 
