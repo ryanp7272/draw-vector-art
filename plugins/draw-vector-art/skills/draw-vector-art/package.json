@@ -1,7 +1,8 @@
 {
   "name": "draw-vector-art-skill",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
+  "license": "MIT",
   "type": "module",
   "description": "Deterministic scene-to-SVG engine for the draw-vector-art Codex skill",
   "scripts": {

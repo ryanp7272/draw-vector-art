@@ -1,7 +1,7 @@
 {
-  "name": "personal",
+  "name": "draw-vector-art",
   "interface": {
-    "displayName": "Personal"
+    "displayName": "Draw Vector Art"
   },
   "plugins": [
     {

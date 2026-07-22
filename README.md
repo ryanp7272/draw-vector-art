@@ -6,14 +6,14 @@
 
 ## Use it in Codex
 
-This repository is also a local Codex marketplace. After cloning it, install the plugin with:
+Install the public marketplace directly from GitHub:
 
 ```bash
-codex plugin marketplace add /absolute/path/to/draw-vector-art
-codex plugin add draw-vector-art@personal
+codex plugin marketplace add ryanp7272/draw-vector-art --ref main
+codex plugin add draw-vector-art@draw-vector-art
 ```
 
-Start a new Codex task, then ask naturally or invoke the skill explicitly:
+Start a new Codex task after installation, then ask naturally or invoke the skill explicitly:
 
 ```text
 Use $draw-vector-art to make a golf ball on a tee.
@@ -49,3 +49,7 @@ The included pilot is illustrative, not an independent model evaluation. A defen
 ```bash
 npm --prefix plugins/draw-vector-art/skills/draw-vector-art run check
 ```
+
+## License
+
+MIT. Use it, modify it, test it, and build on it.
