@@ -5,6 +5,7 @@ import path from "node:path";
 import test from "node:test";
 import { Resvg } from "@resvg/resvg-js";
 import sharp from "sharp";
+import { runBenchmark } from "../scripts/benchmark.js";
 import { compileSvg, escapeXml } from "../scripts/compiler.js";
 import { validateScene } from "../scripts/diagnostics.js";
 import { compareScene, renderScene } from "../scripts/render.js";
@@ -233,4 +234,27 @@ test("ships a balanced 12-task evaluation set with usable local references", asy
       assert.equal(metadata.format, "svg");
     }),
   );
+});
+
+test("runs the pilot benchmark and emits blinded scoring artifacts", async () => {
+  const output = await mkdtemp(path.join(os.tmpdir(), "draw-vector-benchmark-"));
+  const run = path.join(projectRoot, "tests", "evaluation", "pilot", "run.json");
+  const report = await runBenchmark(run, output);
+  assert.equal(report.evaluatedTasks, 3);
+  assert.equal(report.totalTasks, 12);
+  assert.equal(report.completeEvaluation, false);
+  assert.ok(report.cases.every((entry) => entry.sceneEngine.validationErrors === 0));
+  await Promise.all([
+    access(report.artifacts.contactSheet),
+    access(report.artifacts.scorecard),
+    access(report.artifacts.blindKey),
+    ...report.cases.flatMap((entry) => [
+      access(entry.artifacts.labeled),
+      access(entry.artifacts.blind),
+      access(entry.artifacts.blindSvgA),
+      access(entry.artifacts.blindSvgB),
+    ]),
+  ]);
+  const scorecardContents = await readFile(report.artifacts.scorecard, "utf8");
+  assert.match(scorecardContents, /preferred_a_or_b/);
 });

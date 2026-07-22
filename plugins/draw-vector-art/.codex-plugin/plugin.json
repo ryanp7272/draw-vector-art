@@ -1,0 +1,39 @@
+{
+  "name": "draw-vector-art",
+  "version": "0.2.0+codex.20260722163726",
+  "description": "Reliable semantic scene-to-SVG drawing for Codex",
+  "author": {
+    "name": "Ryan Peterson",
+    "url": "https://github.com/ryanp7272"
+  },
+  "homepage": "https://github.com/ryanp7272/draw-vector-art",
+  "repository": "https://github.com/ryanp7272/draw-vector-art",
+  "keywords": [
+    "svg",
+    "vector-art",
+    "drawing",
+    "icons",
+    "codex-skill"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Draw Vector Art",
+    "shortDescription": "Create reliable, editable SVG artwork",
+    "longDescription": "Draw polished flat-geometric SVGs through a constrained semantic scene, deterministic renderer, structural validation, and visual refinement loop.",
+    "developerName": "Ryan Peterson",
+    "category": "Creativity",
+    "capabilities": [
+      "Create",
+      "Render",
+      "Validate",
+      "Compare"
+    ],
+    "brandColor": "#0F766E",
+    "websiteURL": "https://github.com/ryanp7272/draw-vector-art",
+    "defaultPrompt": [
+      "Draw a polished editable vector icon.",
+      "Adapt this reference into clean SVG geometry.",
+      "Validate and improve this unreliable SVG."
+    ]
+  }
+}

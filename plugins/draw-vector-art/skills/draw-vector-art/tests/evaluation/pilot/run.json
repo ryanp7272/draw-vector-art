@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "name": "pilot-one-shot-v1",
+  "description": "Illustrative same-model pilot. Direct SVG inputs were authored once without render feedback; scene inputs used validation and visual inspection. This is a harness smoke test, not an independent model evaluation.",
+  "protocol": {
+    "directSvg": "One raw SVG draft with no render feedback or revision",
+    "sceneEngine": "Semantic scene validated, rendered, inspected, and revised up to four times"
+  },
+  "cases": [
+    {
+      "taskId": "text-rocket",
+      "directSvg": "direct/text-rocket.svg",
+      "engineScene": "../../fixtures/rocket.scene.json"
+    },
+    {
+      "taskId": "text-fox",
+      "directSvg": "direct/text-fox.svg",
+      "engineScene": "engine/text-fox.scene.json"
+    },
+    {
+      "taskId": "text-coffee",
+      "directSvg": "direct/text-coffee.svg",
+      "engineScene": "engine/text-coffee.scene.json"
+    }
+  ]
+}

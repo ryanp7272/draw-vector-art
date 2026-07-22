@@ -1,0 +1,14 @@
+{
+  "text-rocket": {
+    "A": "scene-engine",
+    "B": "direct-svg"
+  },
+  "text-fox": {
+    "A": "direct-svg",
+    "B": "scene-engine"
+  },
+  "text-coffee": {
+    "A": "scene-engine",
+    "B": "direct-svg"
+  }
+}

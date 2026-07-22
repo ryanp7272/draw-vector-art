@@ -1,0 +1,108 @@
+{
+  "version": 1,
+  "run": "pilot-one-shot-v1",
+  "description": "Illustrative same-model pilot. Direct SVG inputs were authored once without render feedback; scene inputs used validation and visual inspection. This is a harness smoke test, not an independent model evaluation.",
+  "generatedAt": "2026-07-22T16:37:10.343Z",
+  "completeEvaluation": false,
+  "evaluatedTasks": 3,
+  "totalTasks": 12,
+  "protocol": {
+    "directSvg": "One raw SVG draft with no render feedback or revision",
+    "sceneEngine": "Semantic scene validated, rendered, inspected, and revised up to four times"
+  },
+  "cases": [
+    {
+      "taskId": "text-rocket",
+      "prompt": "Draw a cheerful coral rocket launching through a navy night sky, with one blue porthole and symmetrical fins.",
+      "checks": [
+        "recognizable at 64 px",
+        "mirrored fins",
+        "semantic rocket parts"
+      ],
+      "directSvg": {
+        "primitiveElements": 12,
+        "semanticIds": 0,
+        "bytes": 932
+      },
+      "sceneEngine": {
+        "primitiveElements": 15,
+        "semanticIds": 19,
+        "bytes": 3257,
+        "objects": 15,
+        "bezierNodes": 9,
+        "validationErrors": 0,
+        "validationWarnings": 0
+      },
+      "artifacts": {
+        "labeled": "text-rocket/labeled.png",
+        "blind": "text-rocket/blind.png",
+        "blindSvgA": "text-rocket/A.svg",
+        "blindSvgB": "text-rocket/B.svg"
+      }
+    },
+    {
+      "taskId": "text-fox",
+      "prompt": "Draw a friendly orange fox head icon with large triangular ears, a cream muzzle, and balanced dark eyes.",
+      "checks": [
+        "symmetrical face",
+        "clear ear silhouette",
+        "no fragmented paths"
+      ],
+      "directSvg": {
+        "primitiveElements": 12,
+        "semanticIds": 0,
+        "bytes": 1002
+      },
+      "sceneEngine": {
+        "primitiveElements": 14,
+        "semanticIds": 15,
+        "bytes": 2816,
+        "objects": 13,
+        "bezierNodes": 2,
+        "validationErrors": 0,
+        "validationWarnings": 0
+      },
+      "artifacts": {
+        "labeled": "text-fox/labeled.png",
+        "blind": "text-fox/blind.png",
+        "blindSvgA": "text-fox/A.svg",
+        "blindSvgB": "text-fox/B.svg"
+      }
+    },
+    {
+      "taskId": "text-coffee",
+      "prompt": "Draw a warm cream coffee mug with a teal handle, three simple steam curls, and a small leaf emblem.",
+      "checks": [
+        "handle reads clearly",
+        "consistent steam strokes",
+        "leaf remains editable"
+      ],
+      "directSvg": {
+        "primitiveElements": 8,
+        "semanticIds": 0,
+        "bytes": 902
+      },
+      "sceneEngine": {
+        "primitiveElements": 12,
+        "semanticIds": 13,
+        "bytes": 2616,
+        "objects": 11,
+        "bezierNodes": 12,
+        "validationErrors": 0,
+        "validationWarnings": 0
+      },
+      "artifacts": {
+        "labeled": "text-coffee/labeled.png",
+        "blind": "text-coffee/blind.png",
+        "blindSvgA": "text-coffee/A.svg",
+        "blindSvgB": "text-coffee/B.svg"
+      }
+    }
+  ],
+  "artifacts": {
+    "contactSheet": "contact-sheet.png",
+    "scorecard": "scorecard.csv",
+    "blindKey": "blind-key.json"
+  },
+  "caveat": "This runner creates evidence and blinded scoring materials; it does not assign subjective visual scores automatically."
+}

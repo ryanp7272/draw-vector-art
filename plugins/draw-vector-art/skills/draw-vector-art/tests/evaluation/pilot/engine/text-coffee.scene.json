@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "brief": {
+    "prompt": "Draw a warm cream coffee mug with a teal handle, three simple steam curls, and a small leaf emblem.",
+    "style": "flat-geometric",
+    "referenceIntent": "adapt"
+  },
+  "canvas": { "width": 256, "height": 256, "background": "@background" },
+  "palette": {
+    "background": "#ECFDF5",
+    "cream": "#FFF7ED",
+    "teal": "#14B8A6",
+    "teal-dark": "#0F766E",
+    "coffee": "#78350F",
+    "ink": "#292524",
+    "shadow": "#A7F3D0"
+  },
+  "references": [],
+  "layers": [
+    {
+      "id": "ground-shadow",
+      "type": "ellipse",
+      "frame": { "type": "absolute", "x": 49, "y": 215, "width": 158, "height": 18 },
+      "paint": { "fill": "@shadow", "stroke": "none", "strokeWidth": 0, "opacity": 0.75 }
+    },
+    {
+      "id": "handle-outer",
+      "type": "ellipse",
+      "frame": { "type": "absolute", "x": 153, "y": 99, "width": 80, "height": 86 },
+      "paint": { "fill": "@teal", "stroke": "@ink", "strokeWidth": 5 }
+    },
+    {
+      "id": "handle-opening",
+      "type": "ellipse",
+      "frame": { "type": "absolute", "x": 171, "y": 117, "width": 43, "height": 50 },
+      "paint": { "fill": "@background", "stroke": "none", "strokeWidth": 0 }
+    },
+    {
+      "id": "mug-body",
+      "type": "rounded-rectangle",
+      "frame": { "type": "absolute", "x": 49, "y": 82, "width": 132, "height": 132 },
+      "radius": 18,
+      "paint": { "fill": "@cream", "stroke": "@ink", "strokeWidth": 5, "lineJoin": "round" }
+    },
+    {
+      "id": "coffee-surface",
+      "type": "ellipse",
+      "frame": { "type": "absolute", "x": 57, "y": 74, "width": 116, "height": 34 },
+      "paint": { "fill": "@coffee", "stroke": "@ink", "strokeWidth": 5 }
+    },
+    {
+      "id": "left-leaf",
+      "type": "bezier-path",
+      "frame": { "type": "absolute", "x": 92, "y": 136, "width": 28, "height": 38 },
+      "nodes": [
+        { "x": 100, "y": 100, "out": { "x": -42, "y": -4 } },
+        { "x": 0, "y": 0, "in": { "x": 0, "y": 52 }, "out": { "x": 52, "y": 0 } },
+        { "x": 100, "y": 100, "in": { "x": -4, "y": -42 } }
+      ],
+      "closed": true,
+      "fillRule": "nonzero",
+      "paint": { "fill": "@teal", "stroke": "@teal-dark", "strokeWidth": 2, "lineJoin": "round" }
+    },
+    {
+      "id": "right-leaf",
+      "type": "clone",
+      "source": "left-leaf",
+      "frame": { "type": "mirror", "of": "left-leaf", "axis": "x", "at": 128 }
+    },
+    {
+      "id": "leaf-stem",
+      "type": "line",
+      "frame": { "type": "absolute", "x": 111, "y": 151, "width": 34, "height": 31 },
+      "from": { "x": 50, "y": 100 },
+      "to": { "x": 50, "y": 0 },
+      "paint": { "fill": "none", "stroke": "@teal-dark", "strokeWidth": 3, "lineCap": "round" }
+    },
+    {
+      "id": "left-steam",
+      "type": "bezier-path",
+      "frame": { "type": "absolute", "x": 72, "y": 25, "width": 28, "height": 43 },
+      "nodes": [
+        { "x": 50, "y": 100, "out": { "x": -44, "y": -25 } },
+        { "x": 50, "y": 50, "in": { "x": -44, "y": 25 }, "out": { "x": 44, "y": -25 } },
+        { "x": 50, "y": 0, "in": { "x": 44, "y": 25 } }
+      ],
+      "closed": false,
+      "fillRule": "nonzero",
+      "paint": { "fill": "none", "stroke": "@teal-dark", "strokeWidth": 4, "lineCap": "round" }
+    },
+    {
+      "id": "center-steam",
+      "type": "bezier-path",
+      "frame": { "type": "absolute", "x": 114, "y": 17, "width": 28, "height": 51 },
+      "nodes": [
+        { "x": 50, "y": 100, "out": { "x": -44, "y": -25 } },
+        { "x": 50, "y": 50, "in": { "x": -44, "y": 25 }, "out": { "x": 44, "y": -25 } },
+        { "x": 50, "y": 0, "in": { "x": 44, "y": 25 } }
+      ],
+      "closed": false,
+      "fillRule": "nonzero",
+      "paint": { "fill": "none", "stroke": "@teal-dark", "strokeWidth": 4, "lineCap": "round" }
+    },
+    {
+      "id": "right-steam",
+      "type": "bezier-path",
+      "frame": { "type": "absolute", "x": 156, "y": 25, "width": 28, "height": 43 },
+      "nodes": [
+        { "x": 50, "y": 100, "out": { "x": -44, "y": -25 } },
+        { "x": 50, "y": 50, "in": { "x": -44, "y": 25 }, "out": { "x": 44, "y": -25 } },
+        { "x": 50, "y": 0, "in": { "x": 44, "y": 25 } }
+      ],
+      "closed": false,
+      "fillRule": "nonzero",
+      "paint": { "fill": "none", "stroke": "@teal-dark", "strokeWidth": 4, "lineCap": "round" }
+    }
+  ]
+}

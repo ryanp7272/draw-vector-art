@@ -1,4 +1,6 @@
-draw-vector-art/node_modules/
-draw-vector-art/dist/
-draw-vector-art/coverage/
-draw-vector-art/.tmp/
+**/node_modules/
+**/dist/
+**/coverage/
+**/.tmp/
+benchmark-results/**/direct-svg/
+benchmark-results/**/scene-engine/

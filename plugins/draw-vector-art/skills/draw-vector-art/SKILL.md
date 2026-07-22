@@ -57,6 +57,8 @@ Check every render for:
 
 Treat `report.json` as structural evidence, not an aesthetic score. Always inspect the actual images. Fix all errors; investigate warnings rather than suppressing them mechanically.
 
+When evaluating a change to this skill or engine, read [references/benchmark.md](references/benchmark.md) and use the bundled blinded comparison runner. Do not use the benchmark protocol for ordinary drawing requests.
+
 ## Preserve reliability
 
 - Keep the scene JSON as the source of truth. Do not manually patch the generated SVG.

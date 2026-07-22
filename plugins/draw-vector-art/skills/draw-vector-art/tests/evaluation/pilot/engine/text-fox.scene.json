@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "brief": {
+    "prompt": "Draw a friendly orange fox head icon with large triangular ears, a cream muzzle, and balanced dark eyes.",
+    "style": "flat-geometric",
+    "referenceIntent": "adapt"
+  },
+  "canvas": { "width": 256, "height": 256, "background": "@background" },
+  "palette": {
+    "background": "#FFF7ED",
+    "orange": "#F97316",
+    "cream": "#FFEDD5",
+    "ink": "#292524",
+    "shadow": "#FED7AA"
+  },
+  "references": [],
+  "layers": [
+    {
+      "id": "ground-shadow",
+      "type": "ellipse",
+      "frame": { "type": "absolute", "x": 68, "y": 222, "width": 120, "height": 12 },
+      "paint": { "fill": "@shadow", "stroke": "none", "strokeWidth": 0, "opacity": 0.75 }
+    },
+    {
+      "id": "left-ear",
+      "type": "polygon",
+      "frame": { "type": "absolute", "x": 54, "y": 25, "width": 70, "height": 86 },
+      "points": [{ "x": 4, "y": 88 }, { "x": 24, "y": 0 }, { "x": 100, "y": 78 }],
+      "paint": { "fill": "@orange", "stroke": "@ink", "strokeWidth": 5, "lineJoin": "round" }
+    },
+    {
+      "id": "right-ear",
+      "type": "clone",
+      "source": "left-ear",
+      "frame": { "type": "mirror", "of": "left-ear", "axis": "x", "at": 128 }
+    },
+    {
+      "id": "head",
+      "type": "ellipse",
+      "frame": { "type": "absolute", "x": 48, "y": 54, "width": 160, "height": 170 },
+      "paint": { "fill": "@orange", "stroke": "@ink", "strokeWidth": 5 }
+    },
+    {
+      "id": "left-inner-ear",
+      "type": "polygon",
+      "frame": { "type": "absolute", "x": 68, "y": 43, "width": 40, "height": 54 },
+      "points": [{ "x": 4, "y": 100 }, { "x": 26, "y": 0 }, { "x": 100, "y": 87 }],
+      "paint": { "fill": "@cream", "stroke": "none", "strokeWidth": 0 }
+    },
+    {
+      "id": "right-inner-ear",
+      "type": "clone",
+      "source": "left-inner-ear",
+      "frame": { "type": "mirror", "of": "left-inner-ear", "axis": "x", "at": 128 }
+    },
+    {
+      "id": "left-muzzle",
+      "type": "ellipse",
+      "frame": { "type": "absolute", "x": 69, "y": 130, "width": 66, "height": 65 },
+      "paint": { "fill": "@cream", "stroke": "none", "strokeWidth": 0 }
+    },
+    {
+      "id": "right-muzzle",
+      "type": "clone",
+      "source": "left-muzzle",
+      "frame": { "type": "mirror", "of": "left-muzzle", "axis": "x", "at": 128 }
+    },
+    {
+      "id": "left-eye",
+      "type": "ellipse",
+      "frame": { "type": "absolute", "x": 86, "y": 108, "width": 14, "height": 21 },
+      "paint": { "fill": "@ink", "stroke": "none", "strokeWidth": 0 }
+    },
+    {
+      "id": "right-eye",
+      "type": "clone",
+      "source": "left-eye",
+      "frame": { "type": "mirror", "of": "left-eye", "axis": "x", "at": 128 }
+    },
+    {
+      "id": "nose",
+      "type": "ellipse",
+      "frame": { "type": "absolute", "x": 116, "y": 149, "width": 24, "height": 17 },
+      "paint": { "fill": "@ink", "stroke": "none", "strokeWidth": 0 }
+    },
+    {
+      "id": "left-smile",
+      "type": "bezier-path",
+      "frame": { "type": "absolute", "x": 104, "y": 158, "width": 25, "height": 25 },
+      "nodes": [
+        { "x": 100, "y": 0, "out": { "x": -3, "y": 44 } },
+        { "x": 0, "y": 55, "in": { "x": 38, "y": 0 } }
+      ],
+      "closed": false,
+      "fillRule": "nonzero",
+      "paint": { "fill": "none", "stroke": "@ink", "strokeWidth": 3, "lineCap": "round" }
+    },
+    {
+      "id": "right-smile",
+      "type": "clone",
+      "source": "left-smile",
+      "frame": { "type": "mirror", "of": "left-smile", "axis": "x", "at": 128 }
+    }
+  ]
+}
