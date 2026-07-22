@@ -18,7 +18,7 @@
     "draw:dev": "npm run build --silent && node dist/scripts/cli.js",
     "runtime:prepare": "node scripts/run-engine.mjs prepare",
     "schema": "node scripts/run-engine.mjs schema --out references/scene.schema.json",
-    "test": "npm run build --silent && node --test dist/tests/*.test.js"
+    "test": "npm run build --silent && node scripts/run-tests.mjs"
   },
   "dependencies": {
     "@resvg/resvg-js": "^2.6.2",
