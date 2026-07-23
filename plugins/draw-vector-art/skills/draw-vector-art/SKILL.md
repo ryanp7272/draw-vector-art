@@ -24,7 +24,7 @@ Read [references/scene-format.md](references/scene-format.md) before authoring o
 
 1. Translate the request into a brief covering subject, composition, palette, mood, and essential parts. Treat an unspecified reference as `adapt`: preserve its subject, composition, and important colors while simplifying its geometry.
 2. Create `<name>.scene.json` in the user's output directory. Build the composition and largest silhouette first. Use semantic lowercase IDs such as `rocket-body` and `left-eye`.
-3. Add smaller parts with relative frames, mirrored clones, and groups. Reuse palette references and prefer fewer purposeful shapes over path fragments.
+3. Add smaller parts with relative frames, mirrored clones, groups, and modeled transforms. Mark source-only artwork as a template, then use instances for reusable multi-part objects and repeaters for deterministic patterns. Reuse palette and named paint resources; prefer fewer purposeful shapes over path fragments.
 4. Validate after each meaningful stage:
 
    ```bash
@@ -54,6 +54,7 @@ Check every render for:
 - Deliberate overlap and layer order.
 - Consistent curves, corner treatment, outlines, and palette use.
 - Symmetry created through clones rather than independently guessed coordinates.
+- Repeated structures created through templates, instances, or repeaters with each generated part still named.
 - Important reference features retained without tracing texture or noise.
 - Individually selectable semantic SVG groups and shapes.
 
@@ -66,9 +67,12 @@ When evaluating a change to this skill or engine, read [references/benchmark.md]
 - Keep the scene JSON as the source of truth. Do not manually patch the generated SVG.
 - Use the 256×256 canvas unless the request requires another aspect ratio.
 - Keep Bézier nodes on the local 0–100 object grid and use relative handle vectors.
+- Keep compound-path endpoints, controls, arc radii, gradient geometry, and transform origins on the local 0–100 object grid.
 - Keep direct hexadecimal colors in `palette`; reference them as `@name` in object paint.
-- Keep clones and placement targets among siblings. Keep IDs unique across the entire scene.
-- Avoid typography, animation, gradients, remote assets, embedded raster images, scripts, filters, and arbitrary SVG/XML in v1.
+- Keep clones, instances, repeaters, and placement targets among siblings. Keep authored IDs unique across the entire scene.
+- Use compound paths for genuine holes or multi-contour silhouettes, not as a replacement for semantic parts.
+- Use named gradients only when they improve form at 64 px. Use at most a restrained named shadow; never simulate detailed raster effects.
+- Avoid typography, animation, remote assets, embedded raster images, scripts, arbitrary filters, CSS, and arbitrary SVG/XML in v1.
 - Stop and explain if the request fundamentally requires photorealistic tracing, complex typography, animation, or another unsupported feature.
 
 ## Deliver the result

@@ -2,9 +2,13 @@
 
 `draw-vector-art` is a Codex plugin and deterministic TypeScript drawing engine for clean, editable SVG icons and simple illustrations. Codex authors a constrained semantic scene, validates it, renders previews, inspects the result, and revises named parts instead of guessing raw SVG coordinates in one pass.
 
+Version 0.3 adds modeled affine transforms, reusable group instances and repeaters, compound paths with semantic arcs, frame-relative named gradients, and one bounded shadow effect. The engine still rejects raw SVG, scripts, remote assets, arbitrary filters, and CSS.
+
 [![CI](https://github.com/ryanp7272/draw-vector-art/actions/workflows/ci.yml/badge.svg)](https://github.com/ryanp7272/draw-vector-art/actions/workflows/ci.yml)
 
 ![Three-task direct SVG versus scene-engine pilot](benchmark-results/pilot/contact-sheet.png)
+
+![Version 0.3 reusable sunflower showcase](plugins/draw-vector-art/skills/draw-vector-art/tests/snapshots/sunflower-medallion.svg)
 
 ## Use it in Codex
 
@@ -18,7 +22,7 @@ codex plugin add draw-vector-art@draw-vector-art
 For a reproducible install, pin the marketplace to a release instead of the moving `main` branch:
 
 ```bash
-codex plugin marketplace add ryanp7272/draw-vector-art --ref v0.2.2
+codex plugin marketplace add ryanp7272/draw-vector-art --ref v0.3.0
 codex plugin add draw-vector-art@draw-vector-art
 ```
 
@@ -31,6 +35,15 @@ Use $draw-vector-art to make a golf ball on a tee.
 ```
 
 Codex delivers the editable scene JSON, clean SVG, 64/256/1024 px previews, debug overlay, and validation report. Reference adaptations also include a comparison sheet.
+
+To refresh an installation that tracks `main`:
+
+```bash
+codex plugin marketplace upgrade draw-vector-art
+codex plugin add draw-vector-art@draw-vector-art
+```
+
+Start a new Codex task after upgrading so the refreshed skill instructions are loaded.
 
 ### First-run bootstrap
 
@@ -76,7 +89,7 @@ npm --prefix plugins/draw-vector-art/skills/draw-vector-art ci
 npm --prefix plugins/draw-vector-art/skills/draw-vector-art run check
 ```
 
-CI runs the same check on Node 20 and 22 under Ubuntu, macOS, and Windows, rejects stale committed runtime files, and exercises `doctor`, `prepare`, `schema`, and `render` from a clean `git archive` with no development dependencies present. The packaged smoke test also covers paths containing spaces and renders from the prepared cache with npm unavailable.
+CI runs the same check on Node 20 and 22 under Ubuntu, macOS, and Windows, rejects stale committed runtime or JSON Schema files, and exercises `doctor`, `prepare`, `schema`, and both legacy and v0.3 showcase renders from a clean `git archive` with no development dependencies present. The packaged smoke test also covers paths containing spaces and renders from the prepared cache with npm unavailable.
 
 ## Releases
 

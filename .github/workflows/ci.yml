@@ -47,13 +47,13 @@ jobs:
       - name: Build, test, and regenerate the packaged runtime
         run: npm run check
 
-      - name: Verify the packaged runtime is current
+      - name: Verify generated runtime and schema are current
         shell: bash
         run: |
           set -euo pipefail
-          runtime_status="$(git status --porcelain --untracked-files=all -- runtime)"
-          if [[ -n "$runtime_status" ]]; then
-            printf '%s\n' "$runtime_status"
+          generated_status="$(git status --porcelain --untracked-files=all -- runtime references/scene.schema.json)"
+          if [[ -n "$generated_status" ]]; then
+            printf '%s\n' "$generated_status"
             exit 1
           fi
 
@@ -100,6 +100,9 @@ jobs:
           PATH="$empty_path" "$node_path" scripts/run-engine.mjs render \
             tests/fixtures/rocket.scene.json \
             --out "$output_root"
+          PATH="$empty_path" "$node_path" scripts/run-engine.mjs render \
+            tests/fixtures/sunflower-medallion.scene.json \
+            --out "$output_root/showcase"
           PATH="$empty_path" "$node_path" scripts/run-engine.mjs benchmark \
             tests/evaluation/pilot/run.json \
             --out "$benchmark_root"
@@ -111,6 +114,8 @@ jobs:
           test -s "$output_root/preview-1024.png"
           test -s "$output_root/debug.png"
           test -s "$output_root/report.json"
+          test -s "$output_root/showcase/preview-64.png"
+          test -s "$output_root/showcase/report.json"
           test -s "$benchmark_root/report.json"
           test -s "$benchmark_root/text-rocket/blind-64.png"
           reference_asset="$(find "$DRAW_VECTOR_ART_CACHE_DIR" -path '*/assets/evaluation-references/fox-badge.svg' -type f -print -quit)"

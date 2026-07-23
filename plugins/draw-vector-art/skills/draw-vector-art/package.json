@@ -1,6 +1,6 @@
 {
   "name": "draw-vector-art-skill",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "private": true,
   "license": "MIT",
   "type": "module",
@@ -11,7 +11,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "build:runtime": "tsc -p tsconfig.runtime.json",
-    "check": "npm run build:runtime && npm run build && npm test",
+    "check": "npm run build:runtime && npm run schema && npm run build && npm test",
     "benchmark": "node scripts/run-engine.mjs benchmark",
     "doctor": "node scripts/run-engine.mjs doctor",
     "draw": "node scripts/run-engine.mjs",

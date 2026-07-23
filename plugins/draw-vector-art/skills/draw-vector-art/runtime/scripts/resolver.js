@@ -108,7 +108,7 @@ function resolveSiblings(objects, space, inheritedVisibility, byId, ownerGroup) 
         const children = object.type === "group"
             ? resolveSiblings(object.children, { frame, unitsWidth: 100, unitsHeight: 100 }, visible, byId, object)
             : [];
-        const resolved = { object, frame, visible, children };
+        const resolved = { object, frame, space, visible, children };
         if (byId.has(object.id))
             throw new ResolutionError(`Duplicate object ID ${object.id}`, object.id);
         byId.set(object.id, resolved);

@@ -10,10 +10,12 @@ Tagged releases are immutable, reproducible plugin distribution points. The `mai
    ```bash
    npm --prefix plugins/draw-vector-art/skills/draw-vector-art ci
    npm --prefix plugins/draw-vector-art/skills/draw-vector-art run check
-   git diff --exit-code -- plugins/draw-vector-art/skills/draw-vector-art/runtime
+   git diff --exit-code -- \
+     plugins/draw-vector-art/skills/draw-vector-art/runtime \
+     plugins/draw-vector-art/skills/draw-vector-art/references/scene.schema.json
    ```
 
-3. Confirm the GitHub CI matrix passes on Node 20 and 22 under Ubuntu, macOS, and Windows. The packaged-plugin smoke job must also pass; it verifies a `git archive` copy with no `node_modules`, bootstraps production dependencies into a writable cache, and renders the deterministic fixture from that cache with npm unavailable. Its paths intentionally contain spaces.
+3. Confirm the GitHub CI matrix passes on Node 20 and 22 under Ubuntu, macOS, and Windows. The packaged-plugin smoke job must also pass; it verifies a `git archive` copy with no `node_modules`, bootstraps production dependencies into a writable cache, and renders both the legacy rocket and current showcase fixtures from that cache with npm unavailable. Its paths intentionally contain spaces.
 4. Review the generated runtime and schema changes alongside their TypeScript source changes. Do not publish hand-edited generated files.
 5. Tag the exact verified commit as `v<version>`, push the tag, and confirm the tag-triggered CI run passes.
 6. Publish release notes describing user-visible changes, scene-format compatibility, and any migration steps.

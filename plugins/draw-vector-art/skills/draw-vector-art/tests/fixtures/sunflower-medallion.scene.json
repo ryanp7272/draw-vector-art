@@ -1,0 +1,236 @@
+{
+  "version": 1,
+  "brief": {
+    "prompt": "A warm sunflower medallion with ten balanced petals and two leaves",
+    "style": "flat-geometric",
+    "referenceIntent": "adapt"
+  },
+  "canvas": {
+    "width": 256,
+    "height": 256,
+    "background": "@background"
+  },
+  "palette": {
+    "background": "#FFF8E7",
+    "petal-light": "#FFE48A",
+    "petal": "#F9B83A",
+    "petal-dark": "#E88924",
+    "leaf-light": "#72C66B",
+    "leaf": "#2F8F54",
+    "leaf-dark": "#17623B",
+    "center-light": "#F6C453",
+    "center": "#A95D24",
+    "center-dark": "#713719",
+    "outline": "#56321B",
+    "shadow": "#56321B"
+  },
+  "gradients": {
+    "petal-sunrise": {
+      "type": "linear",
+      "from": { "x": 50, "y": 0 },
+      "to": { "x": 50, "y": 100 },
+      "stops": [
+        { "offset": 0, "color": "@petal-light" },
+        { "offset": 58, "color": "@petal" },
+        { "offset": 100, "color": "@petal-dark" }
+      ]
+    },
+    "leaf-depth": {
+      "type": "linear",
+      "from": { "x": 10, "y": 10 },
+      "to": { "x": 90, "y": 90 },
+      "stops": [
+        { "offset": 0, "color": "@leaf-light" },
+        { "offset": 55, "color": "@leaf" },
+        { "offset": 100, "color": "@leaf-dark" }
+      ]
+    },
+    "center-glow": {
+      "type": "radial",
+      "center": { "x": 46, "y": 42 },
+      "focal": { "x": 34, "y": 30 },
+      "radius": 70,
+      "stops": [
+        { "offset": 0, "color": "@center-light" },
+        { "offset": 62, "color": "@center" },
+        { "offset": 100, "color": "@center-dark" }
+      ]
+    }
+  },
+  "effects": {
+    "soft-lift": {
+      "type": "shadow",
+      "dx": 0,
+      "dy": 4,
+      "blur": 5,
+      "color": "@shadow",
+      "opacity": 0.28
+    }
+  },
+  "references": [],
+  "layers": [
+    {
+      "id": "petal-template",
+      "type": "group",
+      "template": true,
+      "frame": { "type": "absolute", "x": 111, "y": 25, "width": 34, "height": 88 },
+      "children": [
+        {
+          "id": "petal-shape",
+          "type": "bezier-path",
+          "frame": { "type": "absolute", "x": 8, "y": 0, "width": 84, "height": 100 },
+          "nodes": [
+            { "x": 50, "y": 100, "in": { "x": 30, "y": -4 }, "out": { "x": -30, "y": -4 } },
+            { "x": 5, "y": 55, "in": { "x": 0, "y": 22 }, "out": { "x": 0, "y": -24 }, "smooth": true },
+            { "x": 50, "y": 0, "in": { "x": -25, "y": 0 }, "out": { "x": 25, "y": 0 }, "smooth": true },
+            { "x": 95, "y": 55, "in": { "x": 0, "y": -24 }, "out": { "x": 0, "y": 22 }, "smooth": true }
+          ],
+          "closed": true,
+          "paint": { "fill": "gradient:petal-sunrise", "stroke": "@outline", "strokeWidth": 2 }
+        }
+      ]
+    },
+    {
+      "id": "leaf-template",
+      "type": "group",
+      "template": true,
+      "frame": { "type": "absolute", "x": 55, "y": 160, "width": 72, "height": 54 },
+      "children": [
+        {
+          "id": "leaf-blade",
+          "type": "bezier-path",
+          "frame": { "type": "absolute", "x": 0, "y": 0, "width": 100, "height": 100 },
+          "nodes": [
+            { "x": 100, "y": 55, "in": { "x": -24, "y": 30 }, "out": { "x": -24, "y": -30 } },
+            { "x": 0, "y": 45, "in": { "x": 28, "y": -35 }, "out": { "x": 28, "y": 35 } }
+          ],
+          "closed": true,
+          "paint": { "fill": "gradient:leaf-depth", "stroke": "@leaf-dark", "strokeWidth": 2 }
+        }
+      ]
+    },
+    {
+      "id": "stem",
+      "type": "rounded-rectangle",
+      "frame": { "type": "absolute", "x": 120, "y": 126, "width": 16, "height": 96 },
+      "radius": 50,
+      "transform": {
+        "origin": { "x": 50, "y": 100 },
+        "translate": { "x": 0, "y": 0 },
+        "rotate": 2,
+        "scale": { "x": 1, "y": 1 },
+        "skew": { "x": 0, "y": 0 }
+      },
+      "paint": { "fill": "gradient:leaf-depth", "stroke": "@leaf-dark", "strokeWidth": 2 }
+    },
+    {
+      "id": "leaf-left",
+      "type": "instance",
+      "source": "leaf-template",
+      "frame": { "type": "absolute", "x": 48, "y": 158, "width": 76, "height": 57 },
+      "transform": {
+        "origin": { "x": 100, "y": 72 },
+        "translate": { "x": 0, "y": 0 },
+        "rotate": -18,
+        "scale": { "x": 0.96, "y": 0.96 },
+        "skew": { "x": 0, "y": 0 }
+      }
+    },
+    {
+      "id": "leaf-right",
+      "type": "instance",
+      "source": "leaf-template",
+      "frame": { "type": "absolute", "x": 132, "y": 158, "width": 76, "height": 57 },
+      "transform": {
+        "origin": { "x": 50, "y": 72 },
+        "translate": { "x": 0, "y": 0 },
+        "rotate": 18,
+        "scale": { "x": -0.96, "y": 0.96 },
+        "skew": { "x": 0, "y": 0 }
+      }
+    },
+    {
+      "id": "petal-ring",
+      "type": "repeater",
+      "source": "petal-template",
+      "count": 10,
+      "frame": { "type": "absolute", "x": 111, "y": 25, "width": 34, "height": 88 },
+      "step": {
+        "origin": { "x": 50, "y": 100 },
+        "translate": { "x": 0, "y": 0 },
+        "rotate": 36,
+        "scale": { "x": 1, "y": 1 },
+        "skew": { "x": 0, "y": 0 }
+      }
+    },
+    {
+      "id": "center-disk",
+      "type": "ellipse",
+      "frame": { "type": "absolute", "x": 92, "y": 77, "width": 72, "height": 72 },
+      "paint": {
+        "fill": "gradient:center-glow",
+        "stroke": "@outline",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "center-ring",
+      "type": "compound-path",
+      "frame": { "type": "absolute", "x": 82, "y": 67, "width": 92, "height": 92 },
+      "fillRule": "evenodd",
+      "subpaths": [
+        {
+          "start": { "x": 50, "y": 0 },
+          "segments": [
+            {
+              "type": "arc",
+              "radius": { "x": 50, "y": 50 },
+              "rotation": 0,
+              "largeArc": false,
+              "sweep": "clockwise",
+              "to": { "x": 50, "y": 100 }
+            },
+            {
+              "type": "arc",
+              "radius": { "x": 50, "y": 50 },
+              "rotation": 0,
+              "largeArc": false,
+              "sweep": "clockwise",
+              "to": { "x": 50, "y": 0 }
+            }
+          ],
+          "closed": true
+        },
+        {
+          "start": { "x": 50, "y": 24 },
+          "segments": [
+            {
+              "type": "arc",
+              "radius": { "x": 26, "y": 26 },
+              "rotation": 0,
+              "largeArc": false,
+              "sweep": "counterclockwise",
+              "to": { "x": 50, "y": 76 }
+            },
+            {
+              "type": "arc",
+              "radius": { "x": 26, "y": 26 },
+              "rotation": 0,
+              "largeArc": false,
+              "sweep": "counterclockwise",
+              "to": { "x": 50, "y": 24 }
+            }
+          ],
+          "closed": true
+        }
+      ],
+      "paint": {
+        "fill": "@center-dark",
+        "stroke": "none",
+        "strokeWidth": 0,
+        "opacity": 0.9,
+        "effect": "effect:soft-lift"
+      }
+    }
+  ]
+}

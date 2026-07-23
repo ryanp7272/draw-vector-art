@@ -1,6 +1,6 @@
 {
   "name": "draw-vector-art",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Reliable semantic scene-to-SVG drawing for Codex",
   "author": {
     "name": "Ryan Peterson",
@@ -20,7 +20,7 @@
   "interface": {
     "displayName": "Draw Vector Art",
     "shortDescription": "Create reliable, editable SVG artwork",
-    "longDescription": "Draw polished flat-geometric SVGs through a constrained semantic scene, deterministic renderer, structural validation, and visual refinement loop.",
+    "longDescription": "Draw polished flat-geometric SVGs through reusable semantic parts, modeled transforms and paint, deterministic rendering, structural validation, and a visual refinement loop.",
     "developerName": "Ryan Peterson",
     "category": "Creativity",
     "capabilities": [

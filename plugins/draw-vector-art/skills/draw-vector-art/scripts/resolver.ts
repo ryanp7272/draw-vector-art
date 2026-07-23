@@ -13,6 +13,7 @@ export class ResolutionError extends Error {
 export interface ResolvedDrawable {
   object: Drawable;
   frame: ResolvedFrame;
+  space: CoordinateSpace;
   visible: boolean;
   children: ResolvedDrawable[];
 }
@@ -23,7 +24,7 @@ export interface ResolvedScene {
   byId: Map<string, ResolvedDrawable>;
 }
 
-interface CoordinateSpace {
+export interface CoordinateSpace {
   frame: ResolvedFrame;
   unitsWidth: number;
   unitsHeight: number;
@@ -154,7 +155,7 @@ function resolveSiblings(
             object,
           )
         : [];
-    const resolved: ResolvedDrawable = { object, frame, visible, children };
+    const resolved: ResolvedDrawable = { object, frame, space, visible, children };
     if (byId.has(object.id)) throw new ResolutionError(`Duplicate object ID ${object.id}`, object.id);
     byId.set(object.id, resolved);
     return resolved;
