@@ -1,1 +1,2 @@
 plugins/draw-vector-art/skills/draw-vector-art/runtime/**/*.js text eol=lf
+plugins/draw-vector-art/skills/draw-vector-art/references/scene.schema.json text eol=lf
